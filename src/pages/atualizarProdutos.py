@@ -238,10 +238,13 @@ def atualizarProdutos():
                     ns1 = open('notasai.txt','w', encoding="utf-8")
                     np.savetxt(ns1,inserir_txt_notasai_1, delimiter='',header='', fmt="%s")
 
-                    with open('notasai.txt', 'r') as notasai:
-                        arquivo_notasai = notasai.read()
-                    notasai.close()
-                    text_downloader(arquivo_notasai)
+                    with open('notasai.txt', 'rb') as notasai:
+                        st.download_button('Download Zip', notasai, file_name='NOTASAI.txt')  
+
+                    #with open('notasai.txt', 'r') as notasai:
+                        #arquivo_notasai = notasai.read()
+                    #notasai.close()
+                    #text_downloader(arquivo_notasai)
                     #print(ns1)
                     #dest = 'H:\Drives compartilhados\TI\Sieg'
                     #try:
