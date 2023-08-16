@@ -200,17 +200,17 @@ def atualizarProdutos():
                                             elif df_notasai.iloc[num + 1][0][0] == '1':
                                                   cond = 2
 
-                    print(df_notasai_de_para.shape)
+                    #print(df_notasai_de_para.shape)
                     df3 = df_merge.drop(['lesteFlu', 'SEQ'], axis=1)
-                    print(df3.head(5))
-                    print(df3.shape)
+                   # print(df3.head(5))
+                    #print(df3.shape)
                     df_de_para_chave_nota = df3.drop_duplicates(subset=['chave_nota'])
-                    print(df_de_para_chave_nota.head(5))
-                    print(df_de_para_chave_nota.shape)
+                    #print(df_de_para_chave_nota.head(5))
+                    #print(df_de_para_chave_nota.shape)
                     df_merge_final = pd.merge(df_notasai_de_para,df_de_para_chave_nota, how = 'left', on = 'chave_nota')
-                    print(df_merge_final.head(5))
-                    print(df_merge_final.shape)
-                    inserir_txt_notasai_1 = []
+                    #print(df_merge_final.head(5))
+                    #print(df_merge_final.shape)
+                    inserir_txt_notasai_1 = [] 
                     inserir_txt_notasai_2 = []
                     #ns1 = open('notasai1.txt','w', encoding="utf-8")
                     for index, row in df_merge_final.iterrows():
@@ -233,11 +233,16 @@ def atualizarProdutos():
                     #df_merge_final_notasai = pd.DataFrame(inserir_txt_notasai_1)
                     #print(df_merge_final_notasai.shape)
                     #print(df_merge_final_notasai.head(5))
-                    save_path = 'H:\Drives compartilhados\Sage/'
-                    completeName = os.path.join(save_path,'notasai1.txt')  
-                    ns1 = open(completeName,'w', encoding="utf-8")
+                    #save_path = 'H:\Drives compartilhados\Sage/'
+                    #completeName = os.path.join(save_path,'notasai1.txt')  
+                    ns1 = open('notasai.txt','w', encoding="utf-8")
                     np.savetxt(ns1,inserir_txt_notasai_1, delimiter='',header='', fmt="%s")
-                    print(ns1)
+
+                    with open('notasai.txt', 'r') as notasai:
+                        arquivo_notasai = notasai.read()
+                    notasai.close()
+                    text_downloader(arquivo_notasai)
+                    #print(ns1)
                     #dest = 'H:\Drives compartilhados\TI\Sieg'
                     #try:
                         #shutil.copy(ns1, dest)
